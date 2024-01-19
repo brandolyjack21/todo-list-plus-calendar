@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-function Days({ dayOfTheWeekend, totalDays }) {
+function Days({ dayOfTheWeekend, totalDays, buildDate }) {
   //console.log(dayOfTheWeekend, "<=======", totalDays + dayOfTheWeekend);
 
   const [spaces, setSpaces] = useState(7 - dayOfTheWeekend);
+  const [ chosenElement, setChosenElement ] = useState(null)
   console.log(spaces,'spaces__________');
 
   // *********************************************** */
@@ -31,12 +32,23 @@ function Days({ dayOfTheWeekend, totalDays }) {
   };
 
   //*************************************************** */
+
+  const styles = (i) => {
+
+    if (chosenElement && i === chosenElement) {
+      return 'w-10 h-10  border-2 rounded-xl p-3 bg-blue-600 text-white shadow-inner'
+    }else{
+      return 'w-10 h-10  border-2 rounded-xl p-3 text-blue-600 shadow-inner'
+    }
+  }
+  //*************************************************** */
   //console.log(totalDays + dayOfTheWeekend + 1, "????????????????");
 
   //console.log(counterSpaces(), "counterSpaces()");
 
   useEffect(() => {
     setSpaces( 7 - dayOfTheWeekend)
+    setChosenElement(null)
   },[dayOfTheWeekend])
   return (
     <>
@@ -53,7 +65,10 @@ function Days({ dayOfTheWeekend, totalDays }) {
         <li className="w-10 h-10  border-2 rounded-xl shadow-inner"></li>
       ))}
       {Array.from({ length: totalDays - counterSpaces() }).map((day, index) => (
-        <li className="w-10 h-10  border-2 rounded-xl p-3 text-blue-600 shadow-inner">
+        <li onClick={() => {
+            buildDate(index + 1)
+            setChosenElement(index)
+          }} className={ styles(index) }>
           {index + 1}
         </li>
       ))}

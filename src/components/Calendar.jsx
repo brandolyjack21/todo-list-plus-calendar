@@ -20,12 +20,9 @@ function Calendar() {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
   const [day, setDay] = useState(new Date().getDate());
-  const [totalDays, setTotalDays] = useState(
-    new Date(year, month + 1, 0).getDate()
-  );
-  const [dayOfTheWeekend, setDayOfTheWeekend] = useState(
-    new Date(year, month, 1).getDay()
-  );
+  const [totalDays, setTotalDays] = useState(new Date(year, month + 1, 0).getDate());
+  const [dayOfTheWeekend, setDayOfTheWeekend] = useState(new Date(year, month, 1).getDay());
+  const [ clickDate, setClickDate ] = useState({})
 
   const nextMonth = () => {
     if (month === 11) {
@@ -59,6 +56,15 @@ function Calendar() {
     }
   };
 
+  const buildDate = (dayDate) => {
+    const savedDate = { year, month, day:dayDate  }
+    setClickDate(savedDate)
+  }
+
+  useEffect(() => {
+    setClickDate({year , month, day})
+  },[])
+
   return (
     <section className="w-screen h-auto">
       <section className="w-1/1 flex flex-col items-center font-mono p-2 text-2xl">
@@ -89,7 +95,7 @@ function Calendar() {
         </section>
         <section className="w-80 h-auto">
           <ul className="w-full grid gap-3 grid-cols-7 grid-rows-4 py-3 px-2 place-items-center">
-            {<Days dayOfTheWeekend={dayOfTheWeekend} totalDays={totalDays} />}
+            <Days dayOfTheWeekend={dayOfTheWeekend} totalDays={totalDays} buildDate={buildDate} />
           </ul>
         </section>
       </section>
@@ -98,10 +104,10 @@ function Calendar() {
         <section className="w-80 flex flex-col gap-2">
           <article className="w-3/4 flex flex-col m-auto">
             <label className="font-mono" htmlFor="description">descrición:</label>
-            <textarea className="border-2 border-black-100 rounded-lg h-12" id="description" type="text" />
+            <textarea className="border-2 border-black-100 rounded-lg h-12 px-2" id="description" type="text" />
           </article>
           <article className=" h-full px-2">
-            <span className="font-mono">fecha:</span>
+            <span className="font-mono">fecha: {clickDate.day} de {Month[clickDate.month]} del {clickDate.year}</span>
           </article>
           <article className="flex flex-col px-2">
             <span className="font-mono">tipo:</span>
@@ -117,9 +123,12 @@ function Calendar() {
             </ul>
           </article>
           <section className="w-full flex justify-center">
-            <button className="px-5 py-3 m-auto border-blue-600 border-2 mb-1 rounded-3xl text-blue-600 font-sans">Guardar Tarea</button>
+            <button className="px-5 py-3 m-auto border-blue-600 border-2 mb-1 rounded-3xl text-blue-600 font-sans">Guardar Evento</button>
           </section>
         </section>
+      </section>
+      <section>
+        
       </section>
     </section>
   );
