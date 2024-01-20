@@ -123,12 +123,38 @@ function Calendar() {
             </ul>
           </article>
           <section className="w-full flex justify-center">
-            <button className="px-5 py-3 m-auto border-blue-600 border-2 mb-1 rounded-3xl text-blue-600 font-sans">Guardar Evento</button>
+            <button className="px-5 py-3 m-auto border-blue-600 border-2 mb-1 rounded-3xl text-blue-600 font-mono">Guardar Evento</button>
           </section>
         </section>
       </section>
-      <section>
-        
+      <section className="w-screen h-auto py-4 flex justify-center">
+        <article className="w-80 flex flex-col gap-3">
+          <section className="flex justify-center items-center">
+            <h3 className="text-xl font-mono">Eventos Guardados.🌈</h3>
+          </section>
+          <ul className="w-80 flex flex-col gap-2">
+            <li className="flex justify-between items-center border-2 border-gray-100 py-2 px-3 rounded-2xl">
+              <span>19</span>
+              <p className="w-48 flex overflow-hidden border-2 border-gray-100 rounded-xl"><span className="w-96 py-auto spanAnimation">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span><span className="w-96 h-7 py-auto spanAnimation2">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span></p>
+              <i class='bx bx-news'></i>
+            </li>
+            <li className="flex justify-between items-center border-2 border-gray-100 py-2 px-3 rounded-2xl">
+              <span>19</span>
+              <p className="w-48 flex overflow-hidden border-2 border-gray-100 rounded-xl"><span className="w-96 py-auto spanAnimation">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span><span className="w-96 h-7 py-auto spanAnimation2">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span></p>
+              <i class='bx bx-news'></i>
+            </li>
+            <li className="flex justify-between items-center border-2 border-gray-100 py-2 px-3 rounded-2xl">
+              <span>19</span>
+              <p className="w-48 flex overflow-hidden border-2 border-gray-100 rounded-xl"><span className="w-96 py-auto spanAnimation">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span><span className="w-96 h-7 py-auto spanAnimation2">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span></p>
+              <i class='bx bx-news'></i>
+            </li>
+            <li className="flex justify-between items-center border-2 border-gray-100 py-2 px-3 rounded-2xl">
+              <span>19</span>
+              <p className="w-48 flex overflow-hidden border-2 border-gray-100 rounded-xl"><span className="w-96 py-auto spanAnimation">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span><span className="w-96 h-7 py-auto spanAnimation2">fehfijijh jdcdkjc dkjcbed ckecb eiudfhei</span></p>
+              <i class='bx bx-news'></i>
+            </li>
+          </ul>
+        </article>
       </section>
     </section>
   );

@@ -36,9 +36,9 @@ function Days({ dayOfTheWeekend, totalDays, buildDate }) {
   const styles = (i) => {
 
     if (chosenElement && i === chosenElement) {
-      return 'w-10 h-10  border-2 rounded-xl p-3 bg-blue-600 text-white shadow-inner'
+      return 'w-10 h-10  border-2 rounded-xl p-3 bg-blue-600 text-white shadow-inner cursor-pointer'
     }else{
-      return 'w-10 h-10  border-2 rounded-xl p-3 text-blue-600 shadow-inner'
+      return 'w-10 h-10  border-2 rounded-xl p-3 text-blue-600 shadow-inner cursor-pointer'
     }
   }
   //*************************************************** */

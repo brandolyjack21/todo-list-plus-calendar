@@ -7,3 +7,47 @@
     margin: 0;
     padding: 0;
 }
+
+
+.spanAnimation{
+    position: relative;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    animation: displace 10s linear infinite;
+    background-color: white;
+}
+
+@keyframes displace {
+    0%{
+        left: 0%;
+    }
+    50%{
+        left: -155%;
+    }
+    51%{
+        visibility: hidden;
+        left: 150%;
+    }
+    100%{
+        left: 0%;
+    }
+}
+
+.spanAnimation2{
+    position: relative;
+    background-color: white;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    animation: displace2 10s linear infinite;
+}
+
+@keyframes displace2 {
+    0%{
+        left: 0;
+    }
+    100%{
+        left: -310%;
+    }
+}
