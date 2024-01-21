@@ -14,8 +14,10 @@
     top: 0;
     left: 0;
     white-space: nowrap;
+    width: max-content;
+    min-width: 256px;
     animation: displace 10s linear infinite;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
 @keyframes displace {
@@ -37,6 +39,8 @@
 .spanAnimation2{
     position: relative;
     background-color: white;
+    width: max-content;
+    min-width: 256px;
     top: 0;
     left: 0;
     white-space: nowrap;
