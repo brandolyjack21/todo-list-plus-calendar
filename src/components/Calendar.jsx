@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Days from "./Days";
-import CreateEvent from "./createEvent";
+import CreateEvent from "./../components/CreateEvent";
 import EventList from "./EventList";
 
 const Month = [
