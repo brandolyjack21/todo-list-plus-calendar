@@ -4,7 +4,7 @@ import CreateEvent from "./../components/CreateEvent";
 import EventList from "./EventList";
 import { useSelector } from "react-redux";
 import SaveAlert from "./SaveAlert";
-import AlertSelectDay from "./alertSelectDay";
+import AlertSelectDay from "./AlertSelectDay";
 
 const Month = [
   "Enero",
