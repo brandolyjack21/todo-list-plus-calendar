@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import CreateEvent from "./CreateEvent";
 
-function Days({ dayOfTheWeekend, totalDays, buildDate }) {
+function Days({ dayOfTheWeekend, totalDays, buildDate, day, viewSaveEvent }) {
   //console.log(dayOfTheWeekend, "<=======", totalDays + dayOfTheWeekend);
 
   const [spaces, setSpaces] = useState(7 - dayOfTheWeekend);
-  const [ chosenElement, setChosenElement ] = useState(null)
+  const [ chosenElement, setChosenElement ] = useState(0)
+  const [ render ,setRender ] = useState(false)
   console.log(spaces,'spaces__________');
 
   // *********************************************** */
@@ -35,7 +37,9 @@ function Days({ dayOfTheWeekend, totalDays, buildDate }) {
 
   const styles = (i) => {
 
-    if (chosenElement && i === chosenElement) {
+    console.log(chosenElement, i ,day,'``````````````````````````');
+
+    if (chosenElement !== null && chosenElement === i) {
       return 'w-10 h-10  border-2 rounded-xl p-3 bg-blue-600 text-white shadow-inner cursor-pointer'
     }else{
       return 'w-10 h-10  border-2 rounded-xl p-3 text-blue-600 shadow-inner cursor-pointer'
@@ -48,14 +52,20 @@ function Days({ dayOfTheWeekend, totalDays, buildDate }) {
 
   useEffect(() => {
     setSpaces( 7 - dayOfTheWeekend)
-    setChosenElement(null)
+      setChosenElement(null)
   },[dayOfTheWeekend])
+
+  useEffect(() => {
+    setChosenElement(day - 1)
+  },[day])
   return (
     <>
       {counterSpaces() ? (
         Array.from({ length: counterSpaces() }).map((day, index) => (
-          <li className="w-10 h-10 rounded-xl p-3 border-2 text-blue-600 shadow-inner">
-            {totalDays}
+          <li onClick={ () => 
+            {buildDate(counterSpaces() === 2 && index === 0 ? totalDays - 1 : totalDays)
+            setChosenElement(counterSpaces() === 2 && index === 0 ? totalDays - 1 : totalDays)} } className={ styles(counterSpaces() === 2 && index === 0 ? totalDays - 1 : totalDays) }>
+            { counterSpaces() === 2 && index === 0 ? totalDays - 1 : totalDays }
           </li>
         ))
       ) : (

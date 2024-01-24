@@ -13,7 +13,7 @@ const typeEvents = [
   "Otro.",
 ];
 
-function CreateEvent({ day, month, year }) {
+function CreateEvent({ day, month, year, setViewSaveEvent }) {
   const [eventType, setEventType] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
   const [ typeEventSelect, setTypeEventSelect ] = useState(null)
@@ -34,13 +34,16 @@ function CreateEvent({ day, month, year }) {
           description: descriptionValue.trim(),
           type: eventType,
         },
-      };
+      }
+      setDescriptionValue('')
+      setTypeEventSelect(null)
       const events = JSON.parse(localStorage.getItem("events")) ?? [];
 
       events.push(event);
 
       localStorage.setItem("events", JSON.stringify(events));
       dispatch(loadNewTask())
+      setViewSaveEvent(false)
     }
   };
 
@@ -54,7 +57,8 @@ function CreateEvent({ day, month, year }) {
   }
 
   return (
-    <section className="w-80 h-96 flex flex-col border-2 border-gray-200 rounded-xl shadow-inner mb-2 mx-auto">
+    <section className="w-screen h-dvh flex justify-center items-center bg-white absolute top-0 left-0">
+      <section className="w-80 h-96 flex flex-col border-2 border-gray-200 rounded-xl shadow-inner mb-2 mx-auto">
       <h2 className="py-2 mx-auto font-mono text-2xl">Crear Evento</h2>
       <section className="w-80 flex flex-col gap-2">
         <article className="w-3/4 flex flex-col m-auto">
@@ -100,6 +104,7 @@ function CreateEvent({ day, month, year }) {
           </button>
         </section>
       </section>
+    </section>
     </section>
   );
 }

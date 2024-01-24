@@ -39,12 +39,12 @@ function EventList({ year, month }) {
   }, [ year, month, updateTasks ]);
   return (
     <section className="w-screen h-auto py-4 flex justify-center">
-      <article className="w-80 flex flex-col gap-3">
+      <article className="w-80 flex flex-col gap-3 p-2">
         <section className="flex justify-center items-center">
           <h3 className="text-xl font-mono">Eventos Guardados.🌈</h3>
         </section>
-        <ul className="w-80 flex flex-col gap-2">
-          {eventList.map((event, index) => (
+        <ul className="w-80 h-48 overflow-hidden overflow-y-scroll py-2 flex flex-col gap-2">
+          {eventList.length > 0 ? eventList.map((event, index) => (
             <li className="flex justify-between items-center border-2 border-gray-100 py-2 px-3 rounded-2xl shadow-inner">
               <span>{ event.day }</span>
               <p className="w-48 flex overflow-hidden border-2 border-gray-100 rounded-xl shadow">
@@ -57,7 +57,8 @@ function EventList({ year, month }) {
               </p>
               <i class="bx bx-news"></i>
             </li>
-          ))}
+          )):<span className="w-auto h-auto p-5 my-5 mx-auto">no tienes ningun evento guardado </span>
+        }
         </ul>
       </article>
     </section>
