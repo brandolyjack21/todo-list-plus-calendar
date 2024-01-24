@@ -41,13 +41,13 @@ function Calendar() {
     if (month === 11) {
       setYear(year + 1);
       setMonth(0);
-      setTotalDays(new Date(year + 1, month + 1, 0).getDate());
+      setTotalDays(new Date(year + 1, 1, 0).getDate());
       setDayOfTheWeekend(new Date(year + 1, 0, 1).getDay());
     }
     if (month === 10) {
-      setMonth(month + 1);
-      setTotalDays(new Date(year + 1, 0, 0).getDate());
-      setDayOfTheWeekend(new Date(year, month + 1, 1).getDay());
+      setMonth(11);
+      setTotalDays(31);
+      setDayOfTheWeekend(new Date(year, 11, 1).getDay());
     }
     if (month < 10) {
       setMonth(month + 1);
@@ -58,17 +58,21 @@ function Calendar() {
   };
 
   const fomerMonth = () => {
-    if (month < 1) {
-      setYear(year - 1);
-      setMonth(11);
-      console.log(new Date(year - 1, 0, 0).getDate(), "wwwwwwwwwwwwwww");
-      console.log(year, "yearrrrrrrrrrr");
-      setTotalDays(new Date(year - 1, 0, 0).getDate());
-    }
-    if (month >= 1) {
+     if (month > 1) {
+       setMonth(month - 1);
+       setTotalDays(new Date(year, month, 0).getDate());
+       setDayOfTheWeekend(new Date(year, month - 1, 1).getDay())
+     }
+    if (month === 1) {
       setMonth(month - 1);
       setTotalDays(new Date(year, month, 0).getDate());
-      setDayOfTheWeekend(new Date(year, month, 1).getDay());
+      setDayOfTheWeekend(new Date(year, month - 1, 1).getDay());
+    }
+    if (month < 1) { 
+      setYear(year - 1)
+      setMonth(11);
+      setTotalDays(31);
+      setDayOfTheWeekend(new Date(year - 1, 11, 1).getDay());
     }
     setViewSaveEvent(false);
   };
