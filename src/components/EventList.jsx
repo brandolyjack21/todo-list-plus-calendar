@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import EditEvent from "./EditEvent";
 
 const Month = [
   "Enero",
@@ -19,12 +20,14 @@ const Month = [
 function EventList({ year, month }) {
   const [eventList, setEventList] = useState([]);
   const updateTasks = useSelector( state => state.updateTasks.value )
+  const [ editEventView, setEditEventView ] = useState(false)
+  const [ dataEditEventView, setDataEditEventView ] = useState(null)
 
   const extractEventList = () => {
     const events = JSON.parse(localStorage.getItem("events"));
 
     if (events) {
-      console.log(year, month,'popopopopopopo');
+      console.log(events,year, month,'popopopopopopo');
       const filteredEvents = events.filter((event) => event.year === year && event.month === Month[month]);
       console.log('se esta ejecutandoooo', filteredEvents);
       return filteredEvents;
@@ -55,12 +58,26 @@ function EventList({ year, month }) {
                 { event.event.description.length > 26 ? `${event.event.description.slice(0, 27)}...` : event.event.description }
                 </span>
               </p>
-              <i class="bx bx-news"></i>
+              <i onClick={() => {
+                setEditEventView(true)
+                setDataEditEventView(event)
+                }} class="bx bx-news"></i>
             </li>
           )):<span className="w-auto h-auto p-5 my-5 mx-auto">no tienes ningun evento guardado </span>
         }
         </ul>
       </article>
+      {
+        editEventView && dataEditEventView.day !== null ? 
+        <EditEvent
+        day={dataEditEventView.day}
+        month={dataEditEventView.month}
+        year={dataEditEventView.year}
+        description={dataEditEventView.event.description}
+        type={dataEditEventView.event.type}
+        setEditEventView={setEditEventView}
+        />: <></>
+      }
     </section>
   );
 }

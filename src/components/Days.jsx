@@ -40,9 +40,9 @@ function Days({ dayOfTheWeekend, totalDays, buildDate, day, viewSaveEvent }) {
     console.log(chosenElement, i ,day,'``````````````````````````');
 
     if (chosenElement !== null && chosenElement === i) {
-      return 'w-10 h-10  border-2 rounded-xl p-3 bg-blue-600 text-white shadow-inner cursor-pointer'
+      return 'w-10 h-10 flex justify-end items-end  border-2 rounded-xl px-1 bg-blue-600 text-white shadow-inner cursor-pointer'
     }else{
-      return 'w-10 h-10  border-2 rounded-xl p-3 text-blue-600 shadow-inner cursor-pointer'
+      return 'w-10 h-10 flex justify-end items-end  border-2 rounded-xl px-1 text-blue-600 shadow-inner cursor-pointer'
     }
   }
   //*************************************************** */
