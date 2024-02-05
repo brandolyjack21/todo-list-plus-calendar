@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loadNewTask } from '../features/date/updateTasks';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteNewTask } from '../features/date/deleteTask'; 
+import colorThemeStatus from '../features/date/colorThemeStatus';
 
 const typeEvents = [
     "Personal",
@@ -19,6 +20,7 @@ function EditEvent({  day, month, year, description, type, setEditEventView }) {
   const [eventType, setEventType] = useState(type);
   const [descriptionValue, setDescriptionValue] = useState(description);
   const [typeEventSelect, setTypeEventSelect] = useState(0);
+  const colorTheme = useSelector(status => status.colorThemeStatus.value)
   const dispatch = useDispatch()
 
   const handleValue = (e) => {
@@ -28,7 +30,7 @@ function EditEvent({  day, month, year, description, type, setEditEventView }) {
 
   const colorEvent = (i) => {
     if (typeEventSelect === i) {
-      return "w-auto h-8 p-1 px-3 bg-blue-100 flex flex-row items-center rounded-2xl text-white-100 cursor-pointer";
+      return `w-auto h-8 p-1 px-3 ${colorTheme.text_100} flex flex-row items-center rounded-2xl text-white-100 cursor-pointer`;
     } else {
       return "w-auto h-8 p-1 px-3 bg-gray-100 flex flex-row items-center rounded-2xl cursor-pointer";
     }
@@ -79,7 +81,7 @@ function EditEvent({  day, month, year, description, type, setEditEventView }) {
       
       setDescriptionValue("");
       setTypeEventSelect(null);
-      dispatch(loadNewTask());
+      dispatch(deleteNewTask());
       setEditEventView(false);
   }
 
@@ -140,12 +142,12 @@ function EditEvent({  day, month, year, description, type, setEditEventView }) {
               </ul>
             </article>
             <section className="w-full flex justify-center px-10">
-              <button className='w-14 h-14 p-3 border-2 border-red-300 rounded-3xl '>
-              <i onClick={() => deleteEvent()} class='bx bxs-trash text-red-300'></i>
+              <button onClick={() => deleteEvent()} className='w-14 h-14 p-3 border-2 border-red-300 rounded-3xl '>
+              <i class='bx bxs-trash text-red-300'></i>
               </button>
               <button
                 onClick={saveEvent}
-                className=" h-14 px-5 py-3 m-auto border-blue-600 border-2 mb-1 rounded-3xl text-blue-600 font-mono"
+                className={`" h-14 px-5 py-3 m-auto border-blue-600 border-2 mb-1 rounded-3xl text-blue-600 font-mono"`}
               >
                 Actualizar
               </button>

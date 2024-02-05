@@ -20,6 +20,8 @@ const Month = [
 function EventList({ year, month }) {
   const [eventList, setEventList] = useState([]);
   const updateTasks = useSelector( state => state.updateTasks.value )
+  const deleteTask = useSelector(state => state.deleteTask.value)
+  const colorTheme = useSelector(state => state.colorThemeStatus.value)
   const [ editEventView, setEditEventView ] = useState(false)
   const [ dataEditEventView, setDataEditEventView ] = useState(null)
 
@@ -39,7 +41,7 @@ function EventList({ year, month }) {
   useEffect(() => {
     console.log('se esta ejecutando el log de eventlist');
     setEventList(extractEventList());
-  }, [ year, month, updateTasks ]);
+  }, [ year, month, updateTasks, deleteTask ]);
   return (
     <section className="w-screen h-auto py-4 flex justify-center">
       <article className="w-80 flex flex-col gap-3 p-2">

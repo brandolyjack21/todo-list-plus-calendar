@@ -82,3 +82,12 @@
         z-index: -1;
       }
 }
+.customizeTheme{
+    width: 150px;
+    transition: all 1s ease-in-out;
+    box-shadow: 0 0 30px rgba(131, 130, 130, 0.568);
+}
+
+.customizeTheme:hover{
+    height: 220px;
+}

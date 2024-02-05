@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadNewTask } from "../features/date/updateTasks";
 
 const typeEvents = [
@@ -17,6 +17,7 @@ function CreateEvent({ day, month, year, setViewSaveEvent }) {
   const [eventType, setEventType] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
   const [typeEventSelect, setTypeEventSelect] = useState(null);
+  const colorTheme = useSelector(status => status.colorThemeStatus.value)
   const dispatch = useDispatch();
 
   const handleValue = (e) => {
@@ -49,7 +50,7 @@ function CreateEvent({ day, month, year, setViewSaveEvent }) {
 
   const colorEvent = (i) => {
     if (typeEventSelect === i) {
-      return "w-auto h-8 p-1 px-3 bg-blue-100 flex flex-row items-center rounded-2xl text-white-100 cursor-pointer";
+      return `w-auto h-8 p-1 px-3 ${colorTheme.text_100} flex flex-row items-center rounded-2xl text-white-100 cursor-pointer`;
     } else {
       return "w-auto h-8 p-1 px-3 bg-gray-100 flex flex-row items-center rounded-2xl cursor-pointer";
     }

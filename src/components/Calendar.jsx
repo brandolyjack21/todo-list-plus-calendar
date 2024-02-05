@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Days from "./Days";
 import CreateEvent from "./../components/CreateEvent";
 import EventList from "./EventList";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import SaveAlert from "./SaveAlert";
 import AlertSelectDay from "./AlertSelectDay";
+import { deleteNewTask } from "../features/date/deleteTask";
+import DeleteAlert from "./DeleteAlert";
+import CustomizeTheme from "./CustomizeTheme";
 
 const Month = [
   "Enero",
@@ -35,7 +38,11 @@ function Calendar() {
   const [count, setCount] = useState(false);
   const [savedTaskValue, setSavedTaskValue] = useState(false);
   const savedTask = useSelector((state) => state.updateTasks.value);
+  const deleteTask = useSelector(state => state.deleteTask.value)
+  const colorTheme = useSelector(state => state.colorThemeStatus.value)
   const [viewSaveEvent, setViewSaveEvent] = useState(false);
+
+  const dispatch = useDispatch()
 
   const nextMonth = () => {
     if (month === 11) {
@@ -89,6 +96,12 @@ function Calendar() {
     }, 1000);
   };
 
+  const hideDeleteAlert = () => {
+    setTimeout(() => {
+      dispatch(deleteNewTask())
+    }, 1000)
+  }
+
   const viewAlertDay = () => {
     setViewSaveEvent(true);
     if (!clickDate.day) {
@@ -111,11 +124,21 @@ function Calendar() {
       setSavedTaskValue(true);
       savedAlert();
     }
-    setCount(true);
+    setCount(true)
   }, [savedTask]);
+
+  useEffect(() => {
+    if (deleteTask) {
+      hideDeleteAlert()
+    }
+
+  },[deleteTask])
+
+  console.log(colorTheme,'este es colortheme');
 
   return (
     <section className="w-screen h-auto">
+      <CustomizeTheme/>
       <section className="w-1/1 flex flex-col items-center font-mono p-2 text-2xl">
         <h1>{Month[month]}</h1>
         <span className="font-mono pt-8 text-xl">{year}</span>
@@ -132,7 +155,7 @@ function Calendar() {
       </section>
       <section className="flex flex-col my-2 w-screen items-center">
         <section className="w-80 flex flex-row">
-          <ul className="w-full grid grid-cols-7 grid-rows-1 bg-blue-600 text-white text-[15px] py-3 px-2 rounded-xl">
+          <ul className={`w-full grid grid-cols-7 grid-rows-1 ${colorTheme.style} text-white text-[15px] py-3 px-2 rounded-xl`}>
             <li className="mx-auto">Dom.</li>
             <li className="mx-auto">Lun.</li>
             <li className="mx-auto">Mar.</li>
@@ -156,7 +179,7 @@ function Calendar() {
         <section className="w-80 p-3 flex justify-center">
           <button
             onClick={viewAlertDay}
-            className="w-auto h-auto px-4 py-3 flex justify-center items-center border-2 border-blue-600 rounded-3xl text-blue-600 font-normal"
+            className={`w-auto h-auto px-4 py-3 flex justify-center items-center border-2 ${colorTheme.border} rounded-3xl ${colorTheme.text} font-normal`}
           >
             agregar nuevo evento +
           </button>
@@ -173,19 +196,28 @@ function Calendar() {
       <>
         <EventList year={year} month={month} />
       </>
-      {savedTaskValue ? <SaveAlert /> : <></>}
-      {clickDate.day === null && viewSaveEvent ? <AlertSelectDay /> : <></>}
-      {clickDate.day !== null && viewSaveEvent ? (
-        <CreateEvent
-          day={clickDate.day}
-          month={Month[clickDate.month]}
-          year={clickDate.year}
-          setViewSaveEvent={setViewSaveEvent}
-
-        />
-      ) : (
-        <></>
-      )}
+      {
+        savedTaskValue ? <SaveAlert /> : <></>
+      }
+      {
+        deleteTask ? <DeleteAlert/> : <></>
+      }
+      {
+        clickDate.day === null && viewSaveEvent ? <AlertSelectDay /> : <></>
+      }
+      {
+        clickDate.day !== null && viewSaveEvent ? (
+          <CreateEvent
+            day={clickDate.day}
+            month={Month[clickDate.month]}
+            year={clickDate.year}
+            setViewSaveEvent={setViewSaveEvent}
+  
+          />
+        ) : (
+          <></>
+        )
+      }
     </section>
   );
 }
