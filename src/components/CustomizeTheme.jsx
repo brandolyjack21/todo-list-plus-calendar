@@ -26,6 +26,7 @@ const colors = [
 function CustomizeTheme() {
 
     const [ colorTheme, setColorTheme ] = useState()
+    const [clickThemeColor, setClickThemeColor] = useState(false)
     const dispatch = useDispatch()
 
     const selectColor = ( color ) => {
@@ -37,10 +38,10 @@ function CustomizeTheme() {
        setColorTheme('blue') 
     },[])
   return (
-    <section className='absolute top-0 right-0 w-32 h-8 px-2 py-1 m-2 overflow-hidden bg-white flex flex-col gap-3 rounded-lg customizeTheme'>
-      <section className='font-sans font-semibold'>Personalizar <i className='bx bx-palette bx-rotate-90'></i></section>
+    <section  className={clickThemeColor ? 'customizeTheme customizeThemeNext': 'customizeTheme'}>
+      <section onClick={() => setClickThemeColor(!clickThemeColor)} className='font-sans font-semibold text-black'><i onClick={() => setClickThemeColor(!clickThemeColor)} className='bx bx-palette bx-rotate-90'></i></section>
       <section>
-        <ul className='grid grid-cols-4 gap-2'>
+        <ul className='w-32 grid grid-cols-4 gap-2'>
             {
               colors.map( (color, index) => 
                 (

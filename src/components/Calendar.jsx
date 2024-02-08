@@ -138,8 +138,8 @@ function Calendar() {
 
   return (
     <section className="w-screen h-auto">
-      <CustomizeTheme/>
-      <section className="w-1/1 flex flex-col items-center font-mono p-2 text-2xl">
+    <CustomizeTheme/>
+      <section className="w-80 flex flex-col items-center font-mono p-2 text-2xl m-auto relative overflow-hidden">
         <h1>{Month[month]}</h1>
         <span className="font-mono pt-8 text-xl">{year}</span>
       </section>
