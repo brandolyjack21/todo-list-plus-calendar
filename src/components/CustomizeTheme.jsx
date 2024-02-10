@@ -176,7 +176,7 @@ function CustomizeTheme() {
   }, []);
   return (
     <section
-      className={`${clickThemeColor ? "customizeTheme customizeThemeNext" : "customizeTheme"} shadow-xl ${ themeSelect.text_100 } ${themeSelect ? themeSelect.shadow : ''}`}
+      className={`${clickThemeColor ? "customizeTheme customizeThemeNext" : "customizeTheme"} shadow-xl border ${themeSelect.border} ${ themeSelect.text_100 } ${themeSelect ? themeSelect.shadow : ''}`}
     >
       <section className="flex justify-between gap-3">
         <section
