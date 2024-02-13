@@ -3,26 +3,21 @@ import CreateEvent from "./CreateEvent";
 import { useSelector } from "react-redux";
 
 function Days({ dayOfTheWeekend, totalDays, buildDate, day, viewSaveEvent }) {
-  //console.log(dayOfTheWeekend, "<=======", totalDays + dayOfTheWeekend);
 
   const [spaces, setSpaces] = useState(7 - dayOfTheWeekend);
   const [ chosenElement, setChosenElement ] = useState(0)
   const [ render ,setRender ] = useState(false)
   const colorTheme = useSelector(state => state.colorThemeStatus.value)
-  console.log(spaces,'spaces__________');
 
   // *********************************************** */
 
   const counterSpaces = () => {
     const count = totalDays + dayOfTheWeekend;
 
-    //console.log(totalDays, "totalDaysr ");
-
     if (count <= 35) {
       return 0;
     } else {
       const value = count - 35;
-      //console.log(Math.abs(value), "000000");
       return Math.abs(value);
     }
   };
@@ -31,15 +26,12 @@ function Days({ dayOfTheWeekend, totalDays, buildDate, day, viewSaveEvent }) {
 
   const emptyBoxes = () => {
     const value = 7 - (spaces + counterSpaces());
-    console.log(value,'value_____________');
     return value;
   };
 
   //*************************************************** */
 
   const styles = (i) => {
-
-    console.log(chosenElement, i ,day,'``````````````````````````');
 
     if (chosenElement !== null && chosenElement === i) {
       return `w-10 h-10 flex justify-end items-end  border-2 rounded-xl px-1 ${colorTheme.style} text-white shadow-inner cursor-pointer`
@@ -48,9 +40,6 @@ function Days({ dayOfTheWeekend, totalDays, buildDate, day, viewSaveEvent }) {
     }
   }
   //*************************************************** */
-  //console.log(totalDays + dayOfTheWeekend + 1, "????????????????");
-
-  //console.log(counterSpaces(), "counterSpaces()");
 
   useEffect(() => {
     setSpaces( 7 - dayOfTheWeekend)

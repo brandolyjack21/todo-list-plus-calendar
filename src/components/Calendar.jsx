@@ -91,7 +91,6 @@ function Calendar() {
 
   const savedAlert = () => {
     setTimeout(() => {
-      console.log(savedTaskValue);
       setSavedTaskValue(false);
     }, 1000);
   };
@@ -134,7 +133,6 @@ function Calendar() {
 
   },[deleteTask])
 
-  console.log(colorTheme,'este es colortheme');
 
   return (
     <section className="w-screen h-auto">
@@ -186,7 +184,6 @@ function Calendar() {
         </section>
       </section>
       <>
-        {console.log(clickDate.day, "==============")}
         {/* <CreateEvent
           day={clickDate.day}
           month={Month[clickDate.month]}

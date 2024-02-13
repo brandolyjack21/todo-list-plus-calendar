@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteNewTask } from '../features/date/deleteTask'; 
-import colorThemeStatus from '../features/date/colorThemeStatus';
+import { loadNewTask } from '../features/date/updateTasks'; 
+//import colorThemeStatus from '../features/date/colorThemeStatus';
 
 const typeEvents = [
     "Personal",
@@ -24,7 +25,6 @@ function EditEvent({  day, month, year, description, type, setEditEventView }) {
   const dispatch = useDispatch()
 
   const handleValue = (e) => {
-    console.log(e.target.value, "<=============================");
     setDescriptionValue(e.target.value);
   };
 
@@ -53,14 +53,11 @@ function EditEvent({  day, month, year, description, type, setEditEventView }) {
 
     events.map((e,idx) => {
         if(e.day === day && e.year === year && e.month === month && e.event.description === description && e.event.type === type ){
-          console.log('este es el idx',idx);
            index = idx
         }
-        console.log( day, year, month, description, type,'iuiuiuiuiuiuiu',e,'e');
       })
 
     events[index] = event
-    console.log(events.length,index,'log de events');
 
       localStorage.setItem("events", JSON.stringify(events));
       
@@ -146,7 +143,7 @@ function EditEvent({  day, month, year, description, type, setEditEventView }) {
               <i class='bx bxs-trash text-red-300'></i>
               </button>
               <button
-                onClick={saveEvent}
+                onClick={() => saveEvent()}
                 className={`" h-14 px-5 py-3 m-auto border-blue-600 border-2 mb-1 rounded-3xl text-blue-600 font-mono"`}
               >
                 Actualizar

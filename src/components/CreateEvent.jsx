@@ -21,7 +21,6 @@ function CreateEvent({ day, month, year, setViewSaveEvent }) {
   const dispatch = useDispatch();
 
   const handleValue = (e) => {
-    console.log(e.target.value, "<=============================");
     setDescriptionValue(e.target.value);
   };
 

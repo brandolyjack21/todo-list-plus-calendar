@@ -29,9 +29,7 @@ function EventList({ year, month }) {
     const events = JSON.parse(localStorage.getItem("events"));
 
     if (events) {
-      console.log(events,year, month,'popopopopopopo');
       const filteredEvents = events.filter((event) => event.year === year && event.month === Month[month]);
-      console.log('se esta ejecutandoooo', filteredEvents);
       return filteredEvents;
     } else {
       return [];
@@ -39,7 +37,6 @@ function EventList({ year, month }) {
   };
 
   useEffect(() => {
-    console.log('se esta ejecutando el log de eventlist');
     setEventList(extractEventList());
   }, [ year, month, updateTasks, deleteTask ]);
   return (
